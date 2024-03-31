@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.ImagenPerimetro = new System.Windows.Forms.PictureBox();
             this.PanelDeNodos = new System.Windows.Forms.Panel();
             this.lblNodos = new System.Windows.Forms.Label();
-            this.Port = new System.IO.Ports.SerialPort(this.components);
             this.dgvDatosChip = new System.Windows.Forms.DataGridView();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,10 +90,6 @@
             this.lblNodos.Size = new System.Drawing.Size(85, 29);
             this.lblNodos.TabIndex = 0;
             this.lblNodos.Text = "Nodos";
-            // 
-            // Port
-            // 
-            this.Port.PortName = "COM5";
             // 
             // dgvDatosChip
             // 
@@ -185,7 +179,6 @@
             this.btnCargar.TabIndex = 7;
             this.btnCargar.Text = "Cargar";
             this.btnCargar.UseVisualStyleBackColor = true;
-            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
             // PaneldeControl
             // 

@@ -7,10 +7,16 @@ using System.Threading.Tasks;
 
 namespace Version2.Models
 {
-    internal class Nodos
+    public class Nodos
     {
-        private int _id;
-        private string _name;
-        private Pen Color;
+        //public int Id {  get; set; }
+        //public string Name { get; set; }
+        public DateTime Tiempo { get; set; }
+        //public string Empresa { get; set; }
+        //public string Lugar { get; set; }
+        public string Seccion { get; set; }
+        public string State {  get; set; }
+        public string Node {  get; set; }
+        public string Zone { get; set; }
     }
 }
