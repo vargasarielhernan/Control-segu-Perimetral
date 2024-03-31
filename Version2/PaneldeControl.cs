@@ -17,9 +17,9 @@ namespace Version2
     public partial class PaneldeControl : Form
     {
         //System.IO.Ports.SerialPort Port;
-        private bool IsOpen;
+        
         string SerialBufferRx;
-        private delegate void DelegadoAcceso(string iterruptToForm);
+        private SerialPort Port= new SerialPort();
         List<string> comListados;
         string selectionCOM;
         List<string> BufferProcesar = new List<string>();
@@ -44,11 +44,13 @@ namespace Version2
 
             }
         }
-        private void bufSerial_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        public void BufSerial_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            Form1_AccesoInterrupcion(Port.ReadLine());
+            string salida = Port.ReadLine();
+            Form1_AccesoInterrupcion(salida);
+            Invoke(new UPDATE_DATOS(Form1_AccesoInterrupcion),salida);
         }
-        private void Form1_AccesoForm(string accion)
+        public void Form1_AccesoForm(string accion)
         {
             SerialBufferRx = accion;
             if (SerialBufferRx.Count() == 12)
@@ -67,6 +69,8 @@ namespace Version2
             }
 
         }
+        public delegate void UPDATE_DATOS(String Salida);
+        public delegate void DelegadoAcceso(String salida);
         //Metodo para leer los datos que tira el
         private void Form1_AccesoInterrupcion(string accion)
         {
@@ -76,6 +80,13 @@ namespace Version2
             //Objeto que permita pasar los datos.
             object[] arg = { accion };
             base.Invoke(Accediendo, arg);
+        }
+        private void btnCargar_Click(object sender, EventArgs e)
+        {
+            if (Port.IsOpen)
+            {
+                Port.DataReceived += new SerialDataReceivedEventHandler(BufSerial_DataReceived);
+            }
         }
         private void llenarDropDown(string sec, string estado, string nodo, string zona)
         {
@@ -117,11 +128,9 @@ namespace Version2
         //Evento para una vez cerrado el programa se cierre el puerto
         private void PaneldeControl_FormClosed(object sender, FormClosedEventArgs e)
         {
-            IsOpen = true;
             if (Port.IsOpen)
             {
                 Port.Close();
-                IsOpen = false;
             }
         }
 
@@ -136,10 +145,11 @@ namespace Version2
             Port.PortName = selectionCOM;
             Port.BaudRate = 115200;
             Port.Parity = Parity.None;
+            Port.ReceivedBytesThreshold = 1;
             Port.DataBits = 8;
             Port.StopBits = StopBits.One;
             Port.WriteTimeout = 300;
-            Port.ReadTimeout = 300;
+            Port.ReadTimeout = 3000;
             Port.Handshake = Handshake.None;
         }
 
@@ -173,13 +183,10 @@ namespace Version2
                 try
                 {
                     Port.Open();
-                    IsOpen = true;
                     btnConectar.Text = "Desconectar";
                     //if (Port.IsOpen)
                     //{
-                        //    Thread Hilo = new Thread(EscucharSerial);
-                        //    Hilo.Start();
-                        //EscucharSerial();
+                    //    Port.DataReceived += new SerialDataReceivedEventHandler(BufSerial_DataReceived);
                     //}
                     //llenarDropDown();
                 }
@@ -212,7 +219,6 @@ namespace Version2
                     try
                     {
                         Port.Close();
-                        IsOpen = false;
                         btnConectar.Text = "Conectar";
                     }
                     catch { }
@@ -221,7 +227,6 @@ namespace Version2
             }
 
         }
-
 
     }
 }

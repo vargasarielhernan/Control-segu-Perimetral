@@ -16,6 +16,7 @@ namespace Version2
         public Login()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void btn_Aceptar_Click(object sender, EventArgs e)
@@ -28,6 +29,15 @@ namespace Version2
                     paneldeControl.Show();
                     this.Hide();
                 }
+            }
+        }
+
+        private void Login_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                this.btn_Aceptar.PerformClick();
             }
         }
     }

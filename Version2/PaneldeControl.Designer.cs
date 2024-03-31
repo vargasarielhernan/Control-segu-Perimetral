@@ -30,14 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.Port = new System.IO.Ports.SerialPort(this.components);
             this.ImagenPerimetro = new System.Windows.Forms.PictureBox();
             this.PanelDeNodos = new System.Windows.Forms.Panel();
             this.lblNodos = new System.Windows.Forms.Label();
+            this.Port = new System.IO.Ports.SerialPort(this.components);
             this.dgvDatosChip = new System.Windows.Forms.DataGridView();
-            this.cmbComSelect = new System.Windows.Forms.ComboBox();
-            this.btnConectar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Lugar = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,6 +42,10 @@
             this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Node = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Zone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbComSelect = new System.Windows.Forms.ComboBox();
+            this.btnConectar = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnCargar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPerimetro)).BeginInit();
             this.PanelDeNodos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatosChip)).BeginInit();
@@ -63,10 +64,6 @@
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "Securec";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Port
-            // 
-            this.Port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.bufSerial_DataReceived);
             // 
             // ImagenPerimetro
             // 
@@ -96,6 +93,10 @@
             this.lblNodos.TabIndex = 0;
             this.lblNodos.Text = "Nodos";
             // 
+            // Port
+            // 
+            this.Port.PortName = "COM5";
+            // 
             // dgvDatosChip
             // 
             this.dgvDatosChip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -111,35 +112,6 @@
             this.dgvDatosChip.Name = "dgvDatosChip";
             this.dgvDatosChip.Size = new System.Drawing.Size(900, 150);
             this.dgvDatosChip.TabIndex = 3;
-            // 
-            // cmbComSelect
-            // 
-            this.cmbComSelect.FormattingEnabled = true;
-            this.cmbComSelect.Location = new System.Drawing.Point(13, 24);
-            this.cmbComSelect.Name = "cmbComSelect";
-            this.cmbComSelect.Size = new System.Drawing.Size(121, 21);
-            this.cmbComSelect.TabIndex = 4;
-            this.cmbComSelect.Text = "Seleccionar COM";
-            this.cmbComSelect.DropDown += new System.EventHandler(this.cmbComSelect_DropDown);
-            this.cmbComSelect.SelectedIndexChanged += new System.EventHandler(this.cmbComSelect_SelectedIndexChanged);
-            // 
-            // btnConectar
-            // 
-            this.btnConectar.Location = new System.Drawing.Point(141, 22);
-            this.btnConectar.Name = "btnConectar";
-            this.btnConectar.Size = new System.Drawing.Size(75, 23);
-            this.btnConectar.TabIndex = 5;
-            this.btnConectar.Text = "Conectar";
-            this.btnConectar.UseVisualStyleBackColor = true;
-            this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(261, 24);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(237, 20);
-            this.textBox1.TabIndex = 6;
             // 
             // Time
             // 
@@ -176,11 +148,51 @@
             this.Zone.HeaderText = "Zone";
             this.Zone.Name = "Zone";
             // 
+            // cmbComSelect
+            // 
+            this.cmbComSelect.FormattingEnabled = true;
+            this.cmbComSelect.Location = new System.Drawing.Point(13, 24);
+            this.cmbComSelect.Name = "cmbComSelect";
+            this.cmbComSelect.Size = new System.Drawing.Size(121, 21);
+            this.cmbComSelect.TabIndex = 4;
+            this.cmbComSelect.Text = "Seleccionar COM";
+            this.cmbComSelect.DropDown += new System.EventHandler(this.cmbComSelect_DropDown);
+            this.cmbComSelect.SelectedIndexChanged += new System.EventHandler(this.cmbComSelect_SelectedIndexChanged);
+            // 
+            // btnConectar
+            // 
+            this.btnConectar.Location = new System.Drawing.Point(141, 22);
+            this.btnConectar.Name = "btnConectar";
+            this.btnConectar.Size = new System.Drawing.Size(75, 23);
+            this.btnConectar.TabIndex = 5;
+            this.btnConectar.Text = "Conectar";
+            this.btnConectar.UseVisualStyleBackColor = true;
+            this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(261, 24);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(237, 20);
+            this.textBox1.TabIndex = 6;
+            // 
+            // btnCargar
+            // 
+            this.btnCargar.Location = new System.Drawing.Point(261, 51);
+            this.btnCargar.Name = "btnCargar";
+            this.btnCargar.Size = new System.Drawing.Size(75, 23);
+            this.btnCargar.TabIndex = 7;
+            this.btnCargar.Text = "Cargar";
+            this.btnCargar.UseVisualStyleBackColor = true;
+            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
+            // 
             // PaneldeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1255, 852);
+            this.Controls.Add(this.btnCargar);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnConectar);
             this.Controls.Add(this.cmbComSelect);
@@ -211,7 +223,7 @@
         private System.Windows.Forms.ComboBox cmbComSelect;
         private System.Windows.Forms.Button btnConectar;
         private System.Windows.Forms.TextBox textBox1;
-        private System.IO.Ports.SerialPort Port;
+        //private System.IO.Ports.SerialPort Port;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
         private System.Windows.Forms.DataGridViewTextBoxColumn Empresa;
         private System.Windows.Forms.DataGridViewTextBoxColumn Lugar;
@@ -219,6 +231,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn State;
         private System.Windows.Forms.DataGridViewTextBoxColumn Node;
         private System.Windows.Forms.DataGridViewTextBoxColumn Zone;
+        private System.Windows.Forms.Button btnCargar;
     }
 }
 
