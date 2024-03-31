@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Models;
+using AccesoDB;
 
 namespace Version2
 {
@@ -21,15 +24,33 @@ namespace Version2
 
         private void btn_Aceptar_Click(object sender, EventArgs e)
         {
-            if (tbx_usuario.Text !="" && tbx_contraseña.Text != "")
+            Users user = new Users();
+            AccesoUsuarios us = new AccesoUsuarios();
+            try
             {
-                if(tbx_usuario.Text== "Admin" && tbx_contraseña.Text== "1234")
+                user.Name = tbx_usuario.Text;
+                user.Password=tbx_contraseña.Text;
+                if (us.findUser(user))
                 {
                     paneldeControl = new PaneldeControl();
                     paneldeControl.Show();
                     this.Hide();
                 }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Usuario o contraseña incorrecta intente de nuevo");
+            }
+            //if (tbx_usuario.Text !="" && tbx_contraseña.Text != "")
+            //{
+            //    if(tbx_usuario.Text== "Admin" && tbx_contraseña.Text== "1234")
+            //    {
+            //        paneldeControl = new PaneldeControl();
+            //        paneldeControl.Show();
+            //        this.Hide();
+            //    }
+            //}
         }
 
         private void Login_KeyPress(object sender, KeyPressEventArgs e)

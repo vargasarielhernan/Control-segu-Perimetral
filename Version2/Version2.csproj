@@ -90,5 +90,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AccesoDB\AccesoDB.csproj">
+      <Project>{7e27c210-1fda-44e5-87b4-ca65685c9aa9}</Project>
+      <Name>AccesoDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{ce511a48-f3d3-425c-ae2a-3e3fb594384a}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

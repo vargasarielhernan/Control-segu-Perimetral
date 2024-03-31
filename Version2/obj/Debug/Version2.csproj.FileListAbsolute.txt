@@ -9,3 +9,8 @@ C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\Version2\obj\
 C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\Version2\obj\Debug\Version2.csproj.CoreCompileInputs.cache
 C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\Version2\obj\Debug\Version2.exe
 C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\Version2\obj\Debug\Version2.pdb
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\Version2\bin\Debug\AccesoDB.dll
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\Version2\bin\Debug\Models.dll
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\Version2\bin\Debug\AccesoDB.pdb
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\Version2\bin\Debug\Models.pdb
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\Version2\obj\Debug\Version2.csproj.CopyComplete

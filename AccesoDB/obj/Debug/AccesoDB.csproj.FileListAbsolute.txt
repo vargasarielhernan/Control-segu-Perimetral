@@ -1,0 +1,9 @@
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\AccesoDB\bin\Debug\AccesoDB.dll
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\AccesoDB\bin\Debug\AccesoDB.pdb
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\AccesoDB\bin\Debug\Models.dll
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\AccesoDB\bin\Debug\Models.pdb
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\AccesoDB\obj\Debug\AccesoDB.csproj.AssemblyReference.cache
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\AccesoDB\obj\Debug\AccesoDB.csproj.CoreCompileInputs.cache
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\AccesoDB\obj\Debug\AccesoDB.csproj.CopyComplete
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\AccesoDB\obj\Debug\AccesoDB.dll
+C:\Users\user\OneDrive\Escritorio\Prog\C#\Jhonny Programa\Version2\AccesoDB\obj\Debug\AccesoDB.pdb

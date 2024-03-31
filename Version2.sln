@@ -5,6 +5,10 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Version2", "Version2\Version2.csproj", "{8255DDFC-2A7F-426D-8C77-6EC69157D5B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoDB", "AccesoDB\AccesoDB.csproj", "{7E27C210-1FDA-44E5-87B4-CA65685C9AA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{CE511A48-F3D3-425C-AE2A-3E3FB594384A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{8255DDFC-2A7F-426D-8C77-6EC69157D5B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8255DDFC-2A7F-426D-8C77-6EC69157D5B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8255DDFC-2A7F-426D-8C77-6EC69157D5B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E27C210-1FDA-44E5-87B4-CA65685C9AA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E27C210-1FDA-44E5-87B4-CA65685C9AA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E27C210-1FDA-44E5-87B4-CA65685C9AA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E27C210-1FDA-44E5-87B4-CA65685C9AA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE511A48-F3D3-425C-AE2A-3E3FB594384A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE511A48-F3D3-425C-AE2A-3E3FB594384A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE511A48-F3D3-425C-AE2A-3E3FB594384A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE511A48-F3D3-425C-AE2A-3E3FB594384A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
