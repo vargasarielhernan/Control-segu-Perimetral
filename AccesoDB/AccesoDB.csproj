@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AccesoDB.cs" />
     <Compile Include="AccesoUsuarios.cs" />
+    <Compile Include="DatosNodosDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -43,7 +43,6 @@
             this.cmbComSelect = new System.Windows.Forms.ComboBox();
             this.btnConectar = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnCargar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPerimetro)).BeginInit();
             this.PanelDeNodos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatosChip)).BeginInit();
@@ -168,24 +167,14 @@
             this.textBox1.Location = new System.Drawing.Point(261, 24);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(237, 20);
+            this.textBox1.Size = new System.Drawing.Size(237, 49);
             this.textBox1.TabIndex = 6;
-            // 
-            // btnCargar
-            // 
-            this.btnCargar.Location = new System.Drawing.Point(261, 51);
-            this.btnCargar.Name = "btnCargar";
-            this.btnCargar.Size = new System.Drawing.Size(75, 23);
-            this.btnCargar.TabIndex = 7;
-            this.btnCargar.Text = "Cargar";
-            this.btnCargar.UseVisualStyleBackColor = true;
             // 
             // PaneldeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1255, 852);
-            this.Controls.Add(this.btnCargar);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnConectar);
             this.Controls.Add(this.cmbComSelect);
@@ -224,7 +213,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn State;
         private System.Windows.Forms.DataGridViewTextBoxColumn Node;
         private System.Windows.Forms.DataGridViewTextBoxColumn Zone;
-        private System.Windows.Forms.Button btnCargar;
     }
 }
 

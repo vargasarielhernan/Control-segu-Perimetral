@@ -5,12 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Version2.Models;
 
 namespace Version2
 {
@@ -19,9 +19,9 @@ namespace Version2
         //System.IO.Ports.SerialPort Port;
 
         //string SerialBufferRx;
-        Nodos nodos;
+
         SerialPort Port;
-        System.Windows.Forms.Timer loop;
+       // System.Windows.Forms.Timer loop;
         List<string> comListados;
         string selectionCOM;
         //List<string> BufferProcesar = new List<string>();
@@ -38,18 +38,18 @@ namespace Version2
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
 
-            loop = new System.Windows.Forms.Timer();
-            loop.Interval = 1000;
-            loop.Tick += Loop_Tick;
-            loop.Start();
+            //loop = new System.Windows.Forms.Timer();
+            //loop.Interval = 1000;
+            //loop.Tick += Loop_Tick;
+            //loop.Start();
 
-            nodos = new Nodos();
+
         }
 
-        private void Loop_Tick(object sender, EventArgs e)
-        {
-            textBox1.Text = raspberry;
-        }
+        //private void Loop_Tick(object sender, EventArgs e)
+        //{
+        //    textBox1.Text += raspberry;
+        //}
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -69,7 +69,7 @@ namespace Version2
         //        {
         //            if (Port.IsOpen)
         //            {
-        //                string raspberry = Port.ReadLine();
+        //                string raspberry = Port.ReadExisting();
         //                textBox1.Invoke(new MethodInvoker(
         //                    delegate
         //                    {
@@ -169,7 +169,7 @@ namespace Version2
         //    }
         //}
         //Evento para una vez cerrado el programa se cierre el puerto
-
+        
         private void cmbComSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectionCOM = comListados[cmbComSelect.SelectedIndex];
@@ -177,18 +177,20 @@ namespace Version2
         }
         private void cfgSerial_Config(string selectionCOM)
         {
-            //Port = new System.IO.Ports.SerialPort();
-            //Port.PortName = selectionCOM;
-            Port = new SerialPort("COM5");
+            Port = new System.IO.Ports.SerialPort();
+            Port.PortName = selectionCOM;
+            //Port = new SerialPort("COM5");
             Port.BaudRate = 9600;
             Port.Parity = Parity.None;
             //Port.ReceivedBytesThreshold = 1;
             Port.DataBits = 8;
             Port.StopBits = StopBits.One;
+            Port.RtsEnable = true;
             //Port.WriteTimeout = 300;
             //Port.ReadTimeout = 3000;
             //Port.Handshake = Handshake.None;
         }
+        
         private void PaneldeControl_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (Port.IsOpen)
@@ -199,16 +201,34 @@ namespace Version2
         private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             raspberry = Port.ReadLine();
-            string[] substring = raspberry.Split(',');
-            if (substring.Length == 4)
+            mostrardatos(raspberry);
+            //this.Invoke(new EventHandler(info));
+            //string[] substring = raspberry.Split(',');
+            //if (substring.Length == 4)
+            //{
+            //    nodos.Tiempo = DateTime.Now;
+            //    nodos.Seccion = substring[0];
+            //    nodos.State = substring[1];
+            //    nodos.Node = substring[2];
+            //    nodos.Zone = substring[3];
+            //}
+        }
+        private void mostrardatos(string datos)
+        {
+            // Este método muestra los datos recibidos en el TextBox
+            if (InvokeRequired)
             {
-                nodos.Tiempo = DateTime.Now;
-                nodos.Seccion = substring[0];
-                nodos.State = substring[1];
-                nodos.Node = substring[2];
-                nodos.Zone = substring[3];
+                Invoke(new Action<string>(mostrardatos), datos);
+            }
+            else
+            {
+                textBox1.AppendText(datos + Environment.NewLine); // Agregar los datos al TextBox
             }
         }
+        //private void info(object sender, EventArgs e)
+        //{
+        //    textBox1.AppendText(raspberry);
+        //}
 
         private void cmbComSelect_DropDown(object sender, EventArgs e)
         {
