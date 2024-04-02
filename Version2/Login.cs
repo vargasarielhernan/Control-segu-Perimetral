@@ -31,7 +31,9 @@ namespace Version2
                 user.Name = tbx_usuario.Text;
                 user.Password=tbx_contraseña.Text;
                 if (us.findUser(user))
-                {
+                {   
+                    
+                    //paneldeControl = new PaneldeControl(us.CargarUsuario(user));
                     paneldeControl = new PaneldeControl();
                     paneldeControl.Show();
                     this.Hide();

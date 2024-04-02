@@ -13,5 +13,6 @@ namespace Models
         public string Name { get; set; }
         public string Password { get; set; }
         public int Rol { get; set; }
+        public byte[] Imagen { get; set; }
     }
 }
