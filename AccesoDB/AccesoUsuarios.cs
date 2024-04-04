@@ -6,47 +6,84 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
+
 namespace AccesoDB
 {
     public class AccesoUsuarios
     {
-        //public Users CargarUsuario(Users User)
-        //{
-        //    AccesoDB accesoDB = new AccesoDB();
-        //    try
-        //    {
-        //        accesoDB.setquery("select Id, Usuario, Contraseña, Rol, Imagen from Users where Usuario=@Name AND Contraseña=@Password");
-        //        accesoDB.setparametro("@Name", User.Name);
-        //        accesoDB.setparametro("@Password", User.Password);
-        //        accesoDB.runread();
-        //        Users User1 = new Users();
-        //        while (accesoDB.Reader.Read())
-        //        {
-        //            User1.Id = (int)accesoDB.Reader["Id"];
-        //            User1.Name = (string)accesoDB.Reader["Usuario"];
-        //            if (!(accesoDB.Reader["Rol"] is DBNull))
-        //            {
-        //                User1.Rol = (int)accesoDB.Reader["Rol"];
-        //            }
-        //            if (!(accesoDB.Reader["Imagen"] is DBNull))
-        //            {
-        //                User1.Imagen = (byte[])accesoDB.Reader["Imagen"];
-        //            }
-        //        }
-        //        return User1;
+        public int findId(Users User)
+        {
+            AccesoDB accesoDB = new AccesoDB();
+            try
+            {
+                accesoDB.setquery("select Id, Usuario, Contraseña, Rol, Imagen from Users where Usuario=@Name AND Contraseña=@Password");
+                accesoDB.setparametro("@Name", User.Name);
+                accesoDB.setparametro("@Password", User.Password);
+                accesoDB.runread();
+                Users User1 = new Users();
+                while (accesoDB.Reader.Read())
+                {
+                    User1.Id = (int)accesoDB.Reader["Id"];
+                    User1.Name = (string)accesoDB.Reader["Usuario"];
+                    if (!(accesoDB.Reader["Rol"] is DBNull))
+                    {
+                        User1.Rol = (int)accesoDB.Reader["Rol"];
+                    }
+                    if (!(accesoDB.Reader["Imagen"] is DBNull))
+                    {
+                        User1.Imagen = (byte[])accesoDB.Reader["Imagen"];
+                    }
+                }
+                return User1.Id;
 
-        //    }
-        //    catch (Exception e)
-        //    {
+            }
+            catch (Exception e)
+            {
 
-        //        throw e;
-        //    }
-        //    finally
-        //    {
-        //        accesoDB.closeconnection();
-        //    }
+                throw e;
+            }
+            finally
+            {
+                accesoDB.closeconnection();
+            }
 
-        //}
+        }
+        public Users CargarUsuario(int Id)
+        {
+            AccesoDB accesoDB = new AccesoDB();
+            try
+            {
+                accesoDB.setquery("select Usuario, Contraseña, Rol, Imagen from Users where Id=@Id");
+                accesoDB.setparametro("@Id", Id);
+                accesoDB.runread();
+                Users User1 = new Users();
+                while (accesoDB.Reader.Read())
+                {
+                    User1.Name = (string)accesoDB.Reader["Usuario"];
+                    User1.Password = (string)accesoDB.Reader["Contraseña"];
+                    if (!(accesoDB.Reader["Rol"] is DBNull))
+                    {
+                        User1.Rol = (int)accesoDB.Reader["Rol"];
+                    }
+                    if (!(accesoDB.Reader["Imagen"] is DBNull))
+                    {
+                        User1.Imagen = (byte[])accesoDB.Reader["Imagen"];
+                    }
+                }
+                return User1;
+
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+            finally
+            {
+                accesoDB.closeconnection();
+            }
+
+        }
         public bool findUser(Users User)
         {
             AccesoDB accesoDB = new AccesoDB();

@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using AccesoDB;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,8 +37,9 @@ namespace Version2
         //string estado;
         public PaneldeControl()
         {
-            comListados = new List<string>();
             InitializeComponent();
+            pConfUsuario.Hide();
+            comListados = new List<string>();
         }
         //public PaneldeControl(Users user)
         //{
@@ -74,7 +76,7 @@ namespace Version2
             serialPort.RtsEnable = true;
             //Port.WriteTimeout = 300;
             //Port.ReadTimeout = 3000;
-            //Port.Handshake = Handshake.None;
+            //Port.Handshake = Handshake.None;            
         }
 
         private void PaneldeControl_FormClosed(object sender, FormClosedEventArgs e)
@@ -164,8 +166,27 @@ namespace Version2
 
         private void btnUsuario_Click(object sender, EventArgs e)
         {
+            pConfUsuario.Visible= true;
+            pConfUsuario.Focus();
+            btnUsuario.BackColor = Color.White;
+            btnUsuario.ForeColor = Color.Black;
+            pConfUsuario.LostFocus += PConfUsuario_LostFocus; 
+            Users users = new Users();
+            AccesoUsuarios us = new AccesoUsuarios();
+            users = us.CargarUsuario(Login.IDUsuarioLog);
+            txtNombre.Text = users.Name;
+            txtContraseña.Text = users.Password;
+            txtRol.Text = users.Rol.ToString();
 
         }
+
+        private void PConfUsuario_LostFocus(object sender, EventArgs e)
+        {
+            pConfUsuario.Visible = false;
+            btnUsuario.BackColor = Color.FromArgb(23, 24, 29) ;
+            btnUsuario.ForeColor = Color.White;
+        }
+
         //bool navExpandir = true;
         //private void timerNav_Tick(object sender, EventArgs e)
         //{
@@ -195,9 +216,10 @@ namespace Version2
             if (verNav)
             {
                 flowLayoutPanelMenu.Show();
-                verNav=false;
+                verNav = false;
             }
-            else{
+            else
+            {
                 flowLayoutPanelMenu.Hide();
                 verNav = true;
             }

@@ -53,6 +53,10 @@
             this.btnUsuario = new System.Windows.Forms.Button();
             this.panelNodos = new System.Windows.Forms.Panel();
             this.btnNodo = new System.Windows.Forms.Button();
+            this.pConfUsuario = new System.Windows.Forms.Panel();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtContraseña = new System.Windows.Forms.TextBox();
+            this.txtRol = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPerimetro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatosChip)).BeginInit();
             this.NavBar.SuspendLayout();
@@ -60,6 +64,7 @@
             this.flowLayoutPanelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelNodos.SuspendLayout();
+            this.pConfUsuario.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -271,11 +276,45 @@
             this.btnNodo.Text = "Nodos";
             this.btnNodo.UseVisualStyleBackColor = false;
             // 
+            // pConfUsuario
+            // 
+            this.pConfUsuario.BackColor = System.Drawing.Color.White;
+            this.pConfUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pConfUsuario.Controls.Add(this.txtRol);
+            this.pConfUsuario.Controls.Add(this.txtContraseña);
+            this.pConfUsuario.Controls.Add(this.txtNombre);
+            this.pConfUsuario.Location = new System.Drawing.Point(200, 40);
+            this.pConfUsuario.Name = "pConfUsuario";
+            this.pConfUsuario.Size = new System.Drawing.Size(786, 686);
+            this.pConfUsuario.TabIndex = 10;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(45, 115);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(157, 20);
+            this.txtNombre.TabIndex = 0;
+            // 
+            // txtContraseña
+            // 
+            this.txtContraseña.Location = new System.Drawing.Point(45, 187);
+            this.txtContraseña.Name = "txtContraseña";
+            this.txtContraseña.Size = new System.Drawing.Size(157, 20);
+            this.txtContraseña.TabIndex = 1;
+            // 
+            // txtRol
+            // 
+            this.txtRol.Location = new System.Drawing.Point(45, 271);
+            this.txtRol.Name = "txtRol";
+            this.txtRol.Size = new System.Drawing.Size(157, 20);
+            this.txtRol.TabIndex = 2;
+            // 
             // PaneldeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1918, 1078);
+            this.Controls.Add(this.pConfUsuario);
             this.Controls.Add(this.flowLayoutPanelMenu);
             this.Controls.Add(this.NavBar);
             this.Controls.Add(this.btnUsers);
@@ -298,6 +337,8 @@
             this.flowLayoutPanelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panelNodos.ResumeLayout(false);
+            this.pConfUsuario.ResumeLayout(false);
+            this.pConfUsuario.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,6 +370,10 @@
         private System.Windows.Forms.Panel panelNodos;
         private System.Windows.Forms.Button btnNodo;
         private System.Windows.Forms.Button btnX;
+        private System.Windows.Forms.Panel pConfUsuario;
+        private System.Windows.Forms.TextBox txtRol;
+        private System.Windows.Forms.TextBox txtContraseña;
+        private System.Windows.Forms.TextBox txtNombre;
     }
 }
 

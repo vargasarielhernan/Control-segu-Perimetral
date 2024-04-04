@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Models;
 using AccesoDB;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Version2
 {
@@ -21,7 +22,7 @@ namespace Version2
             InitializeComponent();
             this.KeyPreview = true;
         }
-
+        public static int IDUsuarioLog;
         private void btn_Aceptar_Click(object sender, EventArgs e)
         {
             Users user = new Users();
@@ -29,10 +30,11 @@ namespace Version2
             try
             {
                 user.Name = tbx_usuario.Text;
-                user.Password=tbx_contraseña.Text;
+                user.Password = tbx_contraseña.Text;
                 if (us.findUser(user))
-                {   
+                {
                     
+                    IDUsuarioLog = us.findId(user);
                     //paneldeControl = new PaneldeControl(us.CargarUsuario(user));
                     paneldeControl = new PaneldeControl();
                     paneldeControl.Show();
@@ -42,7 +44,7 @@ namespace Version2
             catch (Exception ex)
             {
 
-                MessageBox.Show("Usuario o contraseña incorrecta intente de nuevo");
+                MessageBox.Show("Usuario o contraseña incorrecta intente de nuevo", ex.ToString());
             }
             //if (tbx_usuario.Text !="" && tbx_contraseña.Text != "")
             //{
@@ -57,7 +59,7 @@ namespace Version2
 
         private void Login_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == (char)Keys.Enter)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
                 this.btn_Aceptar.PerformClick();
