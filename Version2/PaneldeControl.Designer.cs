@@ -54,9 +54,9 @@
             this.panelNodos = new System.Windows.Forms.Panel();
             this.btnNodo = new System.Windows.Forms.Button();
             this.pConfUsuario = new System.Windows.Forms.Panel();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtContraseña = new System.Windows.Forms.TextBox();
             this.txtRol = new System.Windows.Forms.TextBox();
+            this.txtContraseña = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPerimetro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatosChip)).BeginInit();
             this.NavBar.SuspendLayout();
@@ -288,12 +288,12 @@
             this.pConfUsuario.Size = new System.Drawing.Size(786, 686);
             this.pConfUsuario.TabIndex = 10;
             // 
-            // txtNombre
+            // txtRol
             // 
-            this.txtNombre.Location = new System.Drawing.Point(45, 115);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(157, 20);
-            this.txtNombre.TabIndex = 0;
+            this.txtRol.Location = new System.Drawing.Point(45, 271);
+            this.txtRol.Name = "txtRol";
+            this.txtRol.Size = new System.Drawing.Size(157, 20);
+            this.txtRol.TabIndex = 2;
             // 
             // txtContraseña
             // 
@@ -302,19 +302,18 @@
             this.txtContraseña.Size = new System.Drawing.Size(157, 20);
             this.txtContraseña.TabIndex = 1;
             // 
-            // txtRol
+            // txtNombre
             // 
-            this.txtRol.Location = new System.Drawing.Point(45, 271);
-            this.txtRol.Name = "txtRol";
-            this.txtRol.Size = new System.Drawing.Size(157, 20);
-            this.txtRol.TabIndex = 2;
+            this.txtNombre.Location = new System.Drawing.Point(45, 115);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(157, 20);
+            this.txtNombre.TabIndex = 0;
             // 
             // PaneldeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1918, 1078);
-            this.Controls.Add(this.pConfUsuario);
             this.Controls.Add(this.flowLayoutPanelMenu);
             this.Controls.Add(this.NavBar);
             this.Controls.Add(this.btnUsers);
@@ -323,6 +322,7 @@
             this.Controls.Add(this.cmbComSelect);
             this.Controls.Add(this.dgvDatosChip);
             this.Controls.Add(this.ImagenPerimetro);
+            this.Controls.Add(this.pConfUsuario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(1918, 1078);
             this.Name = "PaneldeControl";

@@ -22,8 +22,8 @@ namespace Version2
         //System.IO.Ports.SerialPort Port;
 
         //string SerialBufferRx;
-
-
+        public Thread ReadSerialDataThread;
+        public string readserialvalue;
         // System.Windows.Forms.Timer loop;
         List<string> comListados;
         string selectionCOM;
@@ -67,16 +67,15 @@ namespace Version2
         {
             serialPort = new System.IO.Ports.SerialPort();
             serialPort.PortName = selectionCOM;
-            //Port = new SerialPort("COM5");
-            serialPort.BaudRate = 9600;
+            serialPort.BaudRate = 115200;
             serialPort.Parity = Parity.None;
-            //Port.ReceivedBytesThreshold = 1;
+            serialPort.ReceivedBytesThreshold = 1;
             serialPort.DataBits = 8;
             serialPort.StopBits = StopBits.One;
             serialPort.RtsEnable = true;
-            //Port.WriteTimeout = 300;
-            //Port.ReadTimeout = 3000;
-            //Port.Handshake = Handshake.None;            
+            serialPort.WriteTimeout = 300;
+            serialPort.ReadTimeout = 3000;
+            serialPort.Handshake = Handshake.None;
         }
 
         private void PaneldeControl_FormClosed(object sender, FormClosedEventArgs e)
@@ -118,10 +117,11 @@ namespace Version2
                 {
                     serialPort.Open();
                     btnConectar.Text = "Desconectar";
-                    //if (Port.IsOpen)
-                    //{
-                    serialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort_DataReceived);
-                    //}
+                    if (serialPort.IsOpen)
+                    {
+                        ReadSerialData();
+                    //serialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort_DataReceived);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -151,6 +151,42 @@ namespace Version2
             }
 
         }
+        private void ReadSerialData()
+        {
+            try
+            {
+                ReadSerialDataThread = new Thread(ReadSerial);
+                ReadSerialDataThread.Start();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("No se pudo leer serial" + e.Message);
+                throw;
+            }
+        }
+        private void ReadSerial()
+        {
+            while(serialPort.IsOpen)
+            {
+                readserialvalue = serialPort.ReadLine();
+                ShowSerialData(readserialvalue);
+
+                //Thread.Sleep(1000);
+            }
+        }
+        public delegate void ShowSerialDatadelegate(string r);
+        private void ShowSerialData(string s)
+        {
+            if (textBox1.InvokeRequired)
+            {
+                ShowSerialDatadelegate SSDD = ShowSerialData;
+                Invoke(SSDD, s);
+            }
+            else
+            {
+                textBox1.AppendText(Environment.NewLine + s);
+            }
+        }
 
         private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
@@ -166,11 +202,11 @@ namespace Version2
 
         private void btnUsuario_Click(object sender, EventArgs e)
         {
-            pConfUsuario.Visible= true;
+            pConfUsuario.Visible = true;
             pConfUsuario.Focus();
             btnUsuario.BackColor = Color.White;
             btnUsuario.ForeColor = Color.Black;
-            pConfUsuario.LostFocus += PConfUsuario_LostFocus; 
+            pConfUsuario.LostFocus += PConfUsuario_LostFocus;
             Users users = new Users();
             AccesoUsuarios us = new AccesoUsuarios();
             users = us.CargarUsuario(Login.IDUsuarioLog);
@@ -183,7 +219,7 @@ namespace Version2
         private void PConfUsuario_LostFocus(object sender, EventArgs e)
         {
             pConfUsuario.Visible = false;
-            btnUsuario.BackColor = Color.FromArgb(23, 24, 29) ;
+            btnUsuario.BackColor = Color.FromArgb(23, 24, 29);
             btnUsuario.ForeColor = Color.White;
         }
 
@@ -240,6 +276,46 @@ namespace Version2
         //    byte[] img = (byte[])user.Imagen;
         //    MemoryStream ms = new MemoryStream(img);
         //    return ms;
+        //}
+        //private void btnUpload_Click(object sender, EventArgs e)
+        //{
+        //    OpenFileDialog openFileDialog1 = new OpenFileDialog();
+        //    openFileDialog1.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.gif";
+        //    openFileDialog1.Title = "Seleccionar imagen";
+
+        //    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+        //    {
+        //        try
+        //        {
+        //            // Mostrar la imagen seleccionada en el PictureBox
+        //            pictureBox1.Image = new Bitmap(openFileDialog1.FileName);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Error al cargar la imagen: " + ex.Message);
+        //        }
+        //    }
+        //}
+
+        //private void btnSaveToDatabase_Click(object sender, EventArgs e)
+        //{
+        //    if (pictureBox1.Image == null)
+        //    {
+        //        MessageBox.Show("Por favor, selecciona una imagen primero.");
+        //        return;
+        //    }
+
+        //    try
+        //    {
+        //        // Convertir la imagen en un arreglo de bytes
+        //        byte[] imageBytes;
+        //        using (MemoryStream stream = new MemoryStream())
+        //        {
+        //            pictureBox1.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+        //            imageBytes = stream.ToArray();
+        //        }
+
+        //    }
         //}
     }
 }
